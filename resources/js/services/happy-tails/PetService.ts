@@ -66,50 +66,50 @@ class PetService extends BaseService {
 
     // ── CRUD ──────────────────────────────────────────────────────────────────
 
-    /** GET /api/owner/pets */
+    /** GET /owner/pets */
     async getPets(params: PetListParams = {}): Promise<ApiResponse<Pet[]>> {
         const qs = this.buildQueryString(params);
-        return this.request<Pet[]>(`${this.baseURL}/api/owner/pets?${qs}`);
+        return this.request<Pet[]>(`${this.baseURL}/owner/pets?${qs}`);
     }
 
     /**
-     * GET /api/owner/pets/{id}
+     * GET /owner/pets/{id}
      * Includes health_summary and upcoming_reminders.
      */
     async getPet(id: number): Promise<ApiResponse<Pet>> {
-        return this.request<Pet>(`${this.baseURL}/api/owner/pets/${id}`);
+        return this.request<Pet>(`${this.baseURL}/owner/pets/${id}`);
     }
 
     /**
-     * POST /api/owner/pets (multipart/form-data)
+     * POST /owner/pets (multipart/form-data)
      * Submits pet data + optional photo.
      */
     async createPet(data: PetFormData): Promise<ApiResponse<Pet>> {
-        return this.request<Pet>(`${this.baseURL}/api/owner/pets`, {
+        return this.request<Pet>(`${this.baseURL}/owner/pets`, {
             method: 'POST',
             body: this.toFormData(data),
         });
     }
 
     /**
-     * POST /api/owner/pets/{id} (_method=PUT for multipart)
+     * POST /owner/pets/{id} (_method=PUT for multipart)
      * Sends only changed fields + optional new photo.
      */
     async updatePet(id: number, data: PetFormData): Promise<ApiResponse<Pet>> {
         const fd = this.toFormData({ ...data, _method: 'PUT' });
-        return this.request<Pet>(`${this.baseURL}/api/owner/pets/${id}`, {
+        return this.request<Pet>(`${this.baseURL/owner/pets/${id}`, {
             method: 'POST',
             body: fd,
         });
     }
 
     /**
-     * DELETE /api/owner/pets/{id}
+     * DELETE /owner/pets/{id}
      * Server archives the pet (sets is_active=false) if health records exist,
      * or hard-deletes if the pet has no history.
      */
     async deletePet(id: number): Promise<ApiResponse<null>> {
-        return this.request<null>(`${this.baseURL}/api/owner/pets/${id}`, {
+        return this.request<null>(`${this.baseURL}/owner/pets/${id}`, {
             method: 'DELETE',
         });
     }
