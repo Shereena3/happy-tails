@@ -48,7 +48,7 @@ export class BaseService {
         const config: RequestInit = {
             ...options,
             headers: finalHeaders,
-            credentials: 'same-origin',
+            credentials: 'include',
         };
 
         try {
