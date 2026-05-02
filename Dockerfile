@@ -1,6 +1,6 @@
 FROM php:8.2-apache
 
-apt-get install -y \
+RUN apt-get update && apt-get install -y \
     git unzip zip curl libpng-dev libjpeg-dev libfreetype6-dev libonig-dev libxml2-dev libpq-dev nodejs npm \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install pdo_mysql pdo_pgsql mbstring exif pcntl bcmath gd
