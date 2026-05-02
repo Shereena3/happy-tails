@@ -97,7 +97,7 @@ class PetService extends BaseService {
      */
     async updatePet(id: number, data: PetFormData): Promise<ApiResponse<Pet>> {
         const fd = this.toFormData({ ...data, _method: 'PUT' });
-        return this.request<Pet>(`${this.baseURL/owner/pets/${id}`, {
+        return this.request<Pet>(`${this.baseURL}/owner/pets/${id}`, {
             method: 'POST',
             body: fd,
         });
