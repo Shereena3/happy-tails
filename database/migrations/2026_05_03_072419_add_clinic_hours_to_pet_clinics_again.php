@@ -10,7 +10,7 @@ return new class extends Migration
     {
         if (Schema::hasTable('pet_clinics') && !Schema::hasColumn('pet_clinics', 'clinic_hours')) {
             Schema::table('pet_clinics', function (Blueprint $table) {
-                $table->string('clinic_hours')->nullable();
+                $table->string('clinic_hours')->nullable()->after('address');
             });
         }
     }
